@@ -4,9 +4,9 @@ import 'package:hacker_news/core/extensions/context_extensions.dart';
 import 'package:skeleton_text/skeleton_text.dart';
 
 extension TextWidgetExtension on Text {
-  Size getSize({double width = double.infinity, String? value, required BuildContext context}) {
+  Size getSize({double width = double.infinity, required BuildContext context}) {
     final textPainter = TextPainter(
-      text: TextSpan(text: value ?? data, style: DefaultTextStyle.of(context).style.merge(style)),
+      text: TextSpan(text: data, style: DefaultTextStyle.of(context).style.merge(style)),
       maxLines: maxLines,
       strutStyle: strutStyle,
       textDirection: textDirection ?? TextDirection.ltr,

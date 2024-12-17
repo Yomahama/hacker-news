@@ -5,5 +5,4 @@ class Animations {
   static const reverseDuration = Duration.zero;
 
   static const duration200 = Duration(milliseconds: 200);
-  static const duration100 = Duration(milliseconds: 100);
 }
