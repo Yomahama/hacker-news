@@ -29,7 +29,7 @@ class UserPostsNotifier extends _$UserPostsNotifier {
       final List<Story> stories = [];
 
       final chunks = <List<int>>[];
-      for (var i = 0; i < ids.length; i += 10) {
+      for (int i = 0; i < ids.length; i += 10) {
         chunks.add(ids.sublist(i, i + 10 > ids.length ? ids.length : i + 10));
       }
 

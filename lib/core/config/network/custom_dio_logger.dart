@@ -11,7 +11,7 @@ class CustomDioLogger extends Interceptor {
     super.onRequest(options, handler);
 
     try {
-      var res = 'NEW REQUEST | ${options.method} | ${options.uri}';
+      String res = 'NEW REQUEST | ${options.method} | ${options.uri}';
 
       if (options.queryParameters.entries.isNotEmpty) {
         final json = prettyJson(options.queryParameters);
@@ -27,7 +27,7 @@ class CustomDioLogger extends Interceptor {
 
       log(res);
     } catch (e, stackTrace) {
-      var res = 'LOGGER CRASHED | NEW REQUEST | ${options.method} | ${options.uri}';
+      String res = 'LOGGER CRASHED | NEW REQUEST | ${options.method} | ${options.uri}';
       res = '$res\n${options.data}';
       log(res, error: e, stackTrace: stackTrace);
     }
@@ -38,7 +38,7 @@ class CustomDioLogger extends Interceptor {
     super.onResponse(response, handler);
 
     try {
-      var res = 'RESPONSE | ${response.statusCode} | ${response.realUri}';
+      String res = 'RESPONSE | ${response.statusCode} | ${response.realUri}';
 
       if (response.data != null) {
         final json = prettyJson(response.data);
@@ -50,7 +50,7 @@ class CustomDioLogger extends Interceptor {
 
       logSuccess(res);
     } catch (e, stackTrace) {
-      var res = 'LOGGER CRASHED | RESPONSE | ${response.statusCode} | ${response.realUri}';
+      String res = 'LOGGER CRASHED | RESPONSE | ${response.statusCode} | ${response.realUri}';
       res = '$res\n${response.data}';
       log(res, error: e, stackTrace: stackTrace);
     }
@@ -61,9 +61,9 @@ class CustomDioLogger extends Interceptor {
     super.onError(err, handler);
 
     try {
-      // var res = 'DIO ERROR | ${err.message} | ${err.response?.realUri ?? err.requestOptions.uri.toString()}';
-      var res = 'DIO ERROR | ${err.response?.realUri ?? err.requestOptions.uri.toString()}';
-      // var res = 'DIO ERROR | ${err.response?.realUri}';
+      // String res = 'DIO ERROR | ${err.message} | ${err.response?.realUri ?? err.requestOptions.uri.toString()}';
+      String res = 'DIO ERROR | ${err.response?.realUri ?? err.requestOptions.uri.toString()}';
+      // String res = 'DIO ERROR | ${err.response?.realUri}';
       if (err.response?.data != null) {
         final json = prettyJson(err.response?.data);
         res = '$res\n$json';
@@ -74,7 +74,7 @@ class CustomDioLogger extends Interceptor {
 
       logError(res);
     } catch (e, stackTrace) {
-      var res = 'LOGGER CRASHED | DIO ERROR  | ${err.message} | ${err.response?.realUri}';
+      String res = 'LOGGER CRASHED | DIO ERROR  | ${err.message} | ${err.response?.realUri}';
       res = '$res\n${err.response?.data}';
       log(res, error: e, stackTrace: stackTrace);
     }
